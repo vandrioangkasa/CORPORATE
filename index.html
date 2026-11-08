@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d19">
+  <title>Corporate Agent Desk</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="shell bar">
+      <a class="brand" href="/" aria-label="Corporate Agent Desk, beranda"><span class="logo" aria-hidden="true">C</span> CAPTAIN<span> / CORPORATE</span></a>
+      <button class="primary" id="new-task" type="button">＋ Tugas Baru</button>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">RUANG KERJA · CORPORATE TEAM</p>
+        <h1>Corporate<br><em>Agent Desk.</em></h1>
+        <p>Kelola keputusan, pembagian kerja, dan proposal kerja sama dari satu tempat.</p>
+      </div>
+      <div class="hero-note">
+        <p class="eyebrow">PANEL KERJA</p>
+        <p id="summary" role="status">Menghubungkan ke panel aktivitas…</p>
+      </div>
+    </section>
+    <div class="workspace">
+      <section aria-labelledby="agents-title">
+        <div class="section-heading"><h2 id="agents-title">Pilih agent</h2><span>01 / BRIEF</span></div>
+        <div id="agents" class="agents"></div>
+      </section>
+      <section aria-labelledby="activity-title">
+        <div class="section-heading"><h2 id="activity-title">Aktivitas</h2><span>02 / STATUS & HASIL</span></div>
+        <p id="connection" role="status" hidden></p>
+        <div class="history-controls">
+          <div><label for="history-search">Cari tugas</label><input id="history-search" type="search" placeholder="Judul atau nama agent"></div>
+          <div><label for="history-status">Status riwayat</label><select id="history-status">
+            <option value="">Semua status</option>
+            <option value="done">Selesai</option>
+            <option value="failed">Gagal</option>
+          </select></div>
+        </div>
+        <p id="history-count" class="history-count"></p>
+        <p id="activity-error" role="alert" hidden></p>
+        <div id="activity" class="activity">
+          <p class="empty">Tugas akan muncul di sini setelah agent dijalankan.</p>
+        </div>
+        <button class="secondary" id="more-history" type="button" hidden>Tampilkan Lebih Banyak</button>
+      </section>
+    </div>
+    <footer>CAPTAIN CORPORATE <span>·</span> Agent Desk</footer>
+  </main>
+  <dialog id="brief-dialog" aria-labelledby="brief-title">
+    <form id="brief-form">
+      <p class="eyebrow">BRIEF TUGAS</p>
+      <h2 id="brief-title">Tugas baru</h2>
+      <label for="agent">Agent</label><select id="agent" required></select>
+      <label for="task-title">Judul tugas</label><input id="task-title" maxlength="100" placeholder="Contoh: Penawaran untuk calon mitra" required>
+      <label for="brief">Brief</label><textarea id="brief" rows="6" maxlength="8000" placeholder="Tuliskan tujuan, tenggat, informasi yang tersedia, dan hasil yang Anda butuhkan." required></textarea>
+      <div id="quotation-fields" hidden>
+        <label for="quotation">Contoh Quotation <span class="field-hint">(opsional)</span></label>
+        <p class="field-hint" id="quotation-help">Tempel teks quotation lama atau pilih PDF untuk mengisi kolom contoh. Masukkan harga dan detail penawaran baru di Brief.</p>
+        <label for="quotation-pdf">Pilih PDF quotation</label>
+        <input id="quotation-pdf" type="file" accept=".pdf,application/pdf" aria-describedby="quotation-pdf-help">
+        <p class="field-hint" id="quotation-pdf-help">Maksimal 10 MB dan 30 halaman. Impor mengganti teks contoh yang ada.</p>
+        <p class="field-hint" id="quotation-pdf-status" role="status"></p>
+        <textarea id="quotation" rows="5" maxlength="12000" aria-describedby="quotation-help" placeholder="Tempel susunan, tabel harga, dan ketentuan dari contoh quotation Anda." disabled></textarea>
+      </div>
+      <p id="form-error" role="alert" hidden></p>
+      <div class="actions"><button type="button" class="secondary" id="cancel">Batal</button><button type="submit" class="primary" id="run">Jalankan Agent →</button></div>
+    </form>
+  </dialog>
+  <dialog id="result-dialog" aria-labelledby="result-title">
+    <p class="eyebrow">HASIL AGENT · UNTUK DITINJAU</p>
+    <h2 id="result-title"></h2>
+    <pre id="result"></pre>
+    <div class="actions"><button type="button" class="secondary" id="close-result">Tutup</button><button type="button" class="primary" id="copy">Salin Hasil</button></div>
+  </dialog>
+</body>
+</html>
